@@ -35,6 +35,7 @@ $(function() {
     origin,
     anchor
   );
+  addMarkersAround(center.lat(), center.lng());
   var activeThingId;
   var activeMarker;
   var activeInfoWindow;
@@ -115,15 +116,15 @@ $(function() {
               // continue
               return true;
             }
-            setTimeout(function() {
-              var point = new google.maps.LatLng(thing.lat, thing.lng);
-              if(thing.user_id) {
-                var color = 'green';
-              } else {
-                var color = 'red';
-              }
-              addMarker(thing.id, point, color);
-            }, i * 100);
+            
+            var point = new google.maps.LatLng(thing.lat, thing.lng);
+            if(thing.user_id) {
+              var color = 'green';
+            } else {
+              var color = 'red';
+            }
+            addMarker(thing.id, point, color);
+            
           });
         }
       }
@@ -131,7 +132,7 @@ $(function() {
   }
   google.maps.event.addListener(map, 'dragend', function() {
     var center = map.getCenter();
-    addMarkersAround(center.lat(), center.lng());
+
   });
   $('#address_form').live('submit', function() {
     var submitButton = $("#address_form input[type='submit']");
