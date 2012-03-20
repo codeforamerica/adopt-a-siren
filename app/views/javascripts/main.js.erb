@@ -35,7 +35,6 @@ $(function() {
     origin,
     anchor
   );
-  addMarkersAround(center.lat(), center.lng());
   var activeThingId;
   var activeMarker;
   var activeInfoWindow;
@@ -130,9 +129,9 @@ $(function() {
       }
     });
   }
-  google.maps.event.addListener(map, 'dragend', function() {
+  google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
     var center = map.getCenter();
-
+    addMarkersAround(center.lat(), center.lng());
   });
   $('#address_form').live('submit', function() {
     var submitButton = $("#address_form input[type='submit']");
