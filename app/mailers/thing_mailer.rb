@@ -1,6 +1,7 @@
 class ThingMailer < ActionMailer::Base
   default :from => "adoptasiren@honolulu.gov"
 
+=begin
   def reminder(thing)
     @thing = thing
     @user = thing.user
@@ -11,4 +12,12 @@ class ThingMailer < ActionMailer::Base
       }
     )
   end
+=end
+
+  def reminder
+    things = Thing.where("user_id IS NOT NULL")
+    emails = (things.all.collect {|t| t.user.email}).join(", ")
+    mail(:to => emails, :subject => "Please remember to listen for your adopted siren today. Mahalo!")
+  end
+
 end
