@@ -15,12 +15,10 @@ platforms :ruby_18 do
   gem 'fastercsv'
 end
 
-=begin
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'
 end
-=end
 
 group :production do
   gem 'thin'
