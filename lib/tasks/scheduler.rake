@@ -4,4 +4,3 @@ task :send_monthly_reminder => :environment do
   ThingMailer.reminder.deliver
 
 end
-                     l
