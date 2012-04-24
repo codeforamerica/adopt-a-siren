@@ -15,6 +15,7 @@ class ThingMailer < ActionMailer::Base
 =end
 
   def send_reminder
+    if ['2012-04-24'].include? Date.current.to_s
     things = Thing.where("user_id IS NOT NULL")
     emails = (things.all.collect {|t| t.user.email}).join(", ")
     mail(:bcc => emails, :subject => "Please remember to listen for your adopted siren today at 11:45AM", :body => "Aloha Kakahiaka!
@@ -36,7 +37,7 @@ Siren Damage or Vandalism: You can help us to safeguard our Outdoor Siren Warnin
 On-line Siren Reporting: Residents now have the option of reporting malfunctioning or vandalized sirens on-line. Visit the City\'s Siren Trouble Report page at http://www3.honolulu.gov/DEMSiren/ to file your report as well as upload pictures.
 
 Mahalo!")
-
+    end
   end
 
 end
