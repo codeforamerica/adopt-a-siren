@@ -27,7 +27,7 @@ For the purpose of this test you will hear a 45-second steady tone on all sirens
 
 During an actual emergency these broadcasts will be heard at frequent intervals and may become continuous if need be.
 
-In addition, residents in areas surrounding Campbell Industrial Park, Honokai Hale, Makakilo, Kapolei Regional Park, Kapolei Golf Course, and the Coast Guard Station at Kalaeloa may also hear a “whooping” tone following the Siren Test. This “whooping” tone is a test of the Hazardous Materials (HAZMAT) Incident outdoor siren warning group that will be activated in the event of a HAZMAT incident.
+In addition, residents in areas surrounding Campbell Industrial Park, Honokai Hale, Makakilo, Kapolei Regional Park, Kapolei Golf Course, and the Coast Guard Station at Kalaeloa may also hear a \"whooping\" tone following the Siren Test. This \"whooping\" tone is a test of the Hazardous Materials (HAZMAT) Incident outdoor siren warning group that will be activated in the event of a HAZMAT incident.
 
 Siren Malfunction: If the siren in your community does not sound or does not operate properly please call the Department of Emergency Management at 723-8960 to report it. You can also email the department at dem@honolulu.gov. With more than 170 outdoor warning sirens on Oahu we appreciate the public’s assistance in identifying problem units.
 
