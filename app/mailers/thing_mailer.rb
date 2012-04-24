@@ -17,7 +17,7 @@ class ThingMailer < ActionMailer::Base
   def send_reminder
     things = Thing.where("user_id IS NOT NULL")
     emails = (things.all.collect {|t| t.user.email}).join(", ")
-    mail(:to => emails, :subject => "Please remember to listen for your adopted siren at 11:45AM.", :html => "Aloha Kakahiaka!
+    mail(:to => emails, :subject => "Please remember to listen for your adopted siren at 11:45AM.", :text => "Aloha Kakahiaka!
 
 You are receiving this message because you have adopted a siren on hnlsirens.herokuapp.com.
 
