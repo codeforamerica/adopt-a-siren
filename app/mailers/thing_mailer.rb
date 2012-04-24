@@ -14,7 +14,7 @@ class ThingMailer < ActionMailer::Base
   end
 =end
 
-  def reminder
+  def send_reminder
     things = Thing.where("user_id IS NOT NULL")
     emails = (things.all.collect {|t| t.user.email}).join(", ")
     mail(:to => emails, :subject => "Please remember to listen for your adopted siren today. Mahalo!")

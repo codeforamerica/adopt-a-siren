@@ -10,6 +10,7 @@ gem 'http_accept_language'
 gem 'pg'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'validates_formatting_of'
+gem 'sendgrid', '~> 1.0.1'
 
 platforms :ruby_18 do
   gem 'fastercsv'
