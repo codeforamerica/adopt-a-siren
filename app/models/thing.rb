@@ -4,7 +4,8 @@ class Thing < ActiveRecord::Base
   validates_presence_of :lat, :lng
   belongs_to :user
   has_many :reminders
-
+  attr_accessor :owned_by_you
+  @owned_by_you
   def self.find_closest(lat, lng, limit=200)
     query = <<-SQL
       SELECT *, (3959 * ACOS(COS(RADIANS(?)) * COS(RADIANS(lat)) * COS(radians(lng) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(lat)))) AS distance
