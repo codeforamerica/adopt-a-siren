@@ -4,3 +4,9 @@ task :send_monthly_reminder => :environment do
   ThingMailer.send_reminder.deliver
 
 end
+
+task :send_monthly_individual => :environment do
+
+  ThingMailer.send_individual
+
+end
