@@ -17,7 +17,7 @@ $(function() {
     zoomControl: true
   };
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  var size = new google.maps.Size(27.0, 37.0);
+  var size = new google.maps.Size(29.0, 37.0);
   var origin = new google.maps.Point(0, 0);
   var anchor = new google.maps.Point(13.0, 18.0);
   var greenMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/green.png' %>',
@@ -25,7 +25,12 @@ $(function() {
     origin,
     anchor
   );
-  var redMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/red.png' %>',
+  var greenLargeMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/green_large.png' %>',
+    new google.maps.Size(40.0, 52.0),
+    origin,
+    new google.maps.Point(25.0, 38.0)
+  );
+  var orangeMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/orange.png' %>',
     size,
     origin,
     anchor
@@ -43,8 +48,10 @@ $(function() {
   function addMarker(thingId, point, color) {
     if(color == 'green') {
       var image = greenMarkerImage;
-    } else if(color == 'red') {
-      var image = redMarkerImage;
+    } else if(color == 'orange') {
+      var image = orangeMarkerImage;
+    } else if(color == 'green_large'){
+      var image = greenLargeMarkerImage;
     }
     var marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
@@ -117,11 +124,14 @@ $(function() {
             }
             
             var point = new google.maps.LatLng(thing.lat, thing.lng);
+            var color = 'orange';
             if(thing.user_id) {
-              var color = 'green';
-            } else {
-              var color = 'red';
+              color = 'green';
             }
+            if(thing.owned_by_you){
+              color = 'green_large';
+            }              
+            
             addMarker(thing.id, point, color);
             
           });
@@ -451,7 +461,7 @@ $(function() {
               activeInfoWindow.close();
               activeInfoWindow.setContent(data);
               activeInfoWindow.open(map, activeMarker);
-              activeMarker.setIcon(redMarkerImage);
+              activeMarker.setIcon(oranageMarkerImage);
               activeMarker.setAnimation(null);
             }
           });
