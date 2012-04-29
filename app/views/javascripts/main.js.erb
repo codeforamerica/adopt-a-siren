@@ -25,10 +25,10 @@ $(function() {
     origin,
     anchor
   );
-  var greenLargeMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/green_large.png' %>',
-    new google.maps.Size(40.0, 52.0),
+  var greenStarMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/green_star.png' %>',
+    size,
     origin,
-    new google.maps.Point(25.0, 38.0)
+    anchor
   );
   var orangeMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/orange.png' %>',
     size,
@@ -50,8 +50,8 @@ $(function() {
       var image = greenMarkerImage;
     } else if(color == 'orange') {
       var image = orangeMarkerImage;
-    } else if(color == 'green_large'){
-      var image = greenLargeMarkerImage;
+    } else if(color == 'green_star'){
+      var image = greenStarMarkerImage;
     }
     var marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
@@ -125,11 +125,11 @@ $(function() {
             
             var point = new google.maps.LatLng(thing.lat, thing.lng);
             var color = 'orange';
-            if(thing.user_id) {
+            if(thing.users.length > 0) {
               color = 'green';
             }
             if(thing.owned_by_you){
-              color = 'green_large';
+              color = 'green_star';
             }              
             
             addMarker(thing.id, point, color);
@@ -418,7 +418,7 @@ $(function() {
             activeInfoWindow.close();
             activeInfoWindow.setContent(data);
             activeInfoWindow.open(map, activeMarker);
-            activeMarker.setIcon(greenMarkerImage);
+            activeMarker.setIcon(greenStarMarkerImage);
             activeMarker.setAnimation(google.maps.Animation.BOUNCE);
           }
         });
@@ -447,7 +447,7 @@ $(function() {
         error: function(jqXHR) {
           $(submitButton).attr("disabled", false);
         },
-        success: function(data) {
+        success: function(thingdata) {
           $.ajax({
             type: 'GET',
             url: '/info_window',
@@ -457,16 +457,19 @@ $(function() {
                 'warning': "<%= I18n.t("notices.abandoned", :thing => I18n.t("defaults.thing").capitalize) %>"
               }
             },
-            success: function(data) {
+            success: function(data_html) {
               activeInfoWindow.close();
-              activeInfoWindow.setContent(data);
+              activeInfoWindow.setContent(data_html);
               activeInfoWindow.open(map, activeMarker);
-              activeMarker.setIcon(oranageMarkerImage);
+              if(thingdata.users.length > 0)
+                  activeMarker.setIcon(greenMarkerImage);
+              else
+                  activeMarker.setIcon(orangeMarkerImage);
               activeMarker.setAnimation(null);
             }
           });
         }
-      });
+      }, "json");
     }
     return false;
   });

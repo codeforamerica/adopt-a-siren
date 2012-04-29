@@ -2,7 +2,7 @@ class Thing < ActiveRecord::Base
   include Geokit::Geocoders
   validates_uniqueness_of :city_id, :allow_nil => true
   validates_presence_of :lat, :lng
-  belongs_to :user
+  has_and_belongs_to_many :users
   has_many :reminders
   attr_accessor :owned_by_you
   @owned_by_you
@@ -56,7 +56,16 @@ class Thing < ActiveRecord::Base
     reverse_geocode.full_address
   end
 
+  def adopted_by(user_id)
+    for u in users do
+      if u.id == user_id then
+        return true
+      end
+    end
+    return false
+  end
+  
   def adopted?
-    !user_id.nil?
+    users.length != 0
   end
 end

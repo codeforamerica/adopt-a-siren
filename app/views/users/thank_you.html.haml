@@ -1,3 +1,5 @@
 %h2
   = t("titles.thank_you", :thing => t("defaults.thing"))
+%p
+  ="#{thing.users.length} people have adopted: #{thing.name}"
 = render :partial => 'things/abandon'

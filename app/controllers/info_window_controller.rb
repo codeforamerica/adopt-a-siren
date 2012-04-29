@@ -2,8 +2,10 @@ class InfoWindowController < ApplicationController
   def index
     @thing = Thing.find_by_id(params[:thing_id])
     if @thing.adopted?
-      if user_signed_in? && current_user.id == @thing.user_id
-        render("users/thank_you")
+      if user_signed_in? && @thing.adopted_by(current_user.id)
+        render("users/thank_you", :locals => {:thing => @thing})
+      elsif user_signed_in?
+        render("things/adopt_again", :locals => {:thing => @thing})
       else
         render("users/profile")
       end
