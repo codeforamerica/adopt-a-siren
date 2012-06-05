@@ -35,6 +35,7 @@ Mahalo!")
       t.users.each do |u|
         emails = u.email
         print emails
+        @thing_name = t.name
         mail(:to => emails, :subject => "Please remember to listen for your adopted siren today at 11:45AM").deliver
       end
 
