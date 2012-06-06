@@ -393,12 +393,16 @@
                                                                 You are receiving this message because you have adopted a siren named <%= @thing_name %> on <a href="http://sirens.honolulu.gov">sirens.honolulu.gov</a>.
 
                                                                 At 11:45am this morning the sirens will be tested. The test involves a 45-second steady tone on all the sirens.
-
+                                                                <br/><br/>
                                                                 <h2 class="h2">Report back</h2>
-                                                                <h3 class="h3"><a href="#">Yep it worked!</a></h3>
-                                                                <h3 class="h3"><a href="#">No I didnt hear it, or it sounded wrong.</a></h3>
-                                                                <h3 class="h3"><a href="#">I wasn't around</a></h3>
-
+                                                                <h3 class="h3">
+                                                                  <a href="http://hnlsirens.herokuapp.com/#<%= @userid %>:<%= @thingid%>:1" >Yep it worked!</a>
+                                                                </h3>
+                                                                <h3 class="h3">
+                                                                  <a href="http://hnlsirens.herokuapp.com/#<%= @userid %>:<%= @thingid%>:2">No I didnt hear it, or it sounded wrong.</a>
+                                                                </h3>
+                                                                <h3 class="h3"><a href="http://hnlsirens.herokuapp.com/#<%= @userid %>:<%= @thingid%>:3">I wasn't around</a></h3>
+                                                                <br/><br/>
                                                                 <p><strong><em>Siren Malfunction:</em></strong> If the siren in your community does not sound or does not operate properly please call the Department of Emergency Management at 723-8960 to report it. You can also email the department at dem@honolulu.gov. With more than 170 outdoor warning sirens on Oahu we appreciate the public's assistance in identifying problem units.</p>
                                                                
 
