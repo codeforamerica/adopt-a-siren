@@ -82,6 +82,7 @@ en:
     sign_in: "Sign in to adopt this %{thing}"
     thank_you: "Thank you for adopting this %{thing}!"
     tos: "Terms of Service"
+    thanks_for_feedback: "Thanks for the feedback"
   sponsors:
     built: "Built in Boston"
     cfa: "Code for America"

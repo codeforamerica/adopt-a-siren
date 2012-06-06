@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429185242) do
+ActiveRecord::Schema.define(:version => 20120605230246) do
 
   create_table "geometry_columns", :id => false, :force => true do |t|
     t.string  "f_table_catalog",   :limit => 256, :null => false
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20120429185242) do
     t.string  "proj4text", :limit => 2048
   end
 
+  create_table "statuses", :force => true do |t|
+    t.string   "statusCode"
+    t.text     "reason"
+    t.integer  "user_id"
+    t.integer  "thing_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "things", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20120429185242) do
     t.decimal  "lat",        :precision => 16, :scale => 14, :null => false
     t.decimal  "lng",        :precision => 17, :scale => 14, :null => false
     t.integer  "city_id"
-    t.integer  "user_id"
   end
 
   add_index "things", ["city_id"], :name => "index_things_on_city_id", :unique => true

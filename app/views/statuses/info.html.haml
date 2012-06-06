@@ -1,0 +1,14 @@
+%h2
+  = t("titles.thanks_for_feedback", :thing => t("defaults.thing").titleize)
+
+%p
+  - if @statusCode==1
+    = "Thanks for reporting that the siren is working"
+  - if @statusCode==2
+    = "Thanks for reporting a malfunctioning siren, please give more detail about the problem"
+    %a{:href=>"http://www3.honolulu.gov/DEMSiren/", :target=>"_blank"}
+      = "here."
+
+%div{:class => "btn primary"}
+  = t("buttons.close")
+

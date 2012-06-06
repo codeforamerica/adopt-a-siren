@@ -7,6 +7,7 @@ AdoptAThing::Application.routes.draw do
 
   get 'address' => 'addresses#show', :as => 'address'
   get 'info_window' => 'info_window#index', :as => 'info_window'
+  get 'status/info' => 'statuses#info', :as => 'status/info'
   get 'sitemap' => 'sitemaps#index', :as => 'sitemap'
   get 'javascripts/main(.:format)' => 'javascripts#main', :as => 'javascript'
 
@@ -18,6 +19,7 @@ AdoptAThing::Application.routes.draw do
 
   resource :reminders
   resource :things
+  resource :status
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root :to => 'main#index'
 end

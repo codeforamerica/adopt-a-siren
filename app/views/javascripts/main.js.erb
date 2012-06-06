@@ -45,6 +45,7 @@ $(function() {
   var activeInfoWindow;
   var isWindowOpen = false;
   var thingIds = [];
+  var markers = [];
   function addMarker(thingId, point, color) {
     if(color == 'green') {
       var image = greenMarkerImage;
@@ -58,8 +59,10 @@ $(function() {
       icon: image,
       map: map,
       position: point,
-      shadow: markerShadowImage
+      shadow: markerShadowImage,
+      thingId:thingId
     });
+    markers.push(marker);
     google.maps.event.addListener(marker, 'click', function() {
       if(activeInfoWindow) {
         activeInfoWindow.close();
@@ -134,11 +137,75 @@ $(function() {
             
             addMarker(thing.id, point, color);
             
+            if(index == data.length -1){
+              //after markers are added
+              urlActions();
+            }
+
           });
         }
       }
     });
   }
+  var urlActions = function(){
+    console.log(window.location.hash)
+    if(window.location.hash.length > 0){
+      //#2:54:failed
+      var hash = window.location.hash.substring(1, window.location.hash.length);
+      var parts = hash.split(":");
+      if(parts.length > 2){
+
+        // use thing_id to highlight the thing we are talking about.
+
+        for(m in markers){
+          if(markers[m].thingId == parts[1]){
+            if(activeInfoWindow) {
+              activeInfoWindow.close();
+            }
+            var infoWindow = new google.maps.InfoWindow({
+              maxWidth: 210
+            });
+            google.maps.event.addListener(infoWindow, 'closeclick', function() {
+              isWindowOpen = false;
+            }); 
+            activeInfoWindow = infoWindow;
+            activeThingId = parts[1];
+            activeMarker = markers[m];
+            $.ajax({
+              type: 'GET',
+              url: '/status/info',
+              data: {
+                'thing_id': parts[1],
+                'statuscode':parts[2]
+              },
+              success: function(data) {
+                // Prevent race condition, which could lead to multiple windows being open at the same time.
+                if(infoWindow == activeInfoWindow) {
+                  infoWindow.setContent(data);
+                  infoWindow.open(map, markers[m]);
+                  isWindowOpen = true;
+                }
+              }
+            });
+            break;
+          }
+        }
+
+
+        var statusData = {user: parts[0],
+                          thing:parts[1],
+                          statusCode:parts[2]};
+
+        $.ajax("/status.json", {type:"POST", data:statusData, success:function(data){
+          console.log("Thanks for reporting");
+        }},"json");
+      }
+
+    }
+  
+  }
+
+
   google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
     var center = map.getCenter();
     addMarkersAround(center.lat(), center.lng());
@@ -173,7 +240,6 @@ $(function() {
           } else {
             $('#address_label').removeClass('error', 500);
             $('#address').removeClass('error', 500);
-            addMarkersAround(data[0], data[1]);
             var center = new google.maps.LatLng(data[0], data[1]);
             map.setCenter(center);
             map.setZoom(16);
