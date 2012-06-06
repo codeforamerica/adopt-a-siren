@@ -8,4 +8,6 @@
     = "Thanks for reporting a malfunctioning siren, please give more detail about the problem"
     %a{:href=>"http://www3.honolulu.gov/DEMSiren/", :target=>"_blank"}
       = "here."
+  - if @statusCode==3
+    = "Thanks. Maybe consider adopting a siren near where were you are on work days."
 
