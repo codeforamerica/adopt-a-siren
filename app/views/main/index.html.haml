@@ -15,10 +15,17 @@
         #col1
           %a{:href => "http://codeforamerica.org/"}
             = image_tag "logos/cfa.png", :alt => t("sponsors.cfa"), :title => t("sponsors.cfa")
-          %br
+        #col2
+          %a{:href => "http://www.honolulu.gov/"}
+            = image_tag "logos/cchonolulu.png", :alt => t("sponsors.city"), :title => t("sponsors.city")
+          %p#mayor
+            %a{:href => "http://www1.honolulu.gov/mayor/"}
+              = t("sponsors.mayor.name") +", "+ t("sponsors.mayor.title") 
+                
+
       #feedback
         %p
-          %a{:href => URI.escape("mailto:adoptahydrant@honolulu.gov?subject=#{t("titles.main", :thing => t("defaults.thing").titleize)} #{t("links.feedback").titleize}")}
+          %a{:href => URI.escape("mailto:adoptasiren@honolulu.gov?subject=#{t("titles.main", :thing => t("defaults.thing").titleize)} #{t("links.feedback").titleize}")}
             = t("links.feedback")
     .table-cell.map-container
       #map
