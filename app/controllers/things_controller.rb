@@ -2,7 +2,8 @@ class ThingsController < ApplicationController
   respond_to :json
 
   def show
-    @things = Thing.find_closest(params[:lat], params[:lng], params[:limit] || 1000)
+    @things = Thing.all( :include => [:users])
+
     unless @things.blank?
       for t in @things
           if user_signed_in? && t.adopted_by(current_user.id) then
