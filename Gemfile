@@ -11,6 +11,7 @@ gem 'pg'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'validates_formatting_of'
 gem 'sendgrid', '~> 1.0.1'
+gem 'newrelic_rpm'
 
 platforms :ruby_18 do
   gem 'fastercsv'
