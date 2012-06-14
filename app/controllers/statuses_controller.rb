@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
   def create
     @status = Status.new(:user_id => params[:user],
                           :thing_id => params[:thing],
-                          :statusCode => params[:statuscode],
+                          :statusCode => params[:statusCode],
                           :reason => params[:reason])
     if @status.save
       render(:json => @status.to_json(), :status => 201)
