@@ -39,7 +39,9 @@ class ThingsController < ApplicationController
       end
       if !@thing.adopted_by(params[:thing][:user_id])
         @thing.users << current_user
-        ThingMailer.send_stream_signup(current_user)
+        if(@thing.thing_type == 2)
+          ThingMailer.send_stream_signup(current_user)
+        end
       end
     end
     render(:json => @thing.to_json(:include => :users), :status => 200)
