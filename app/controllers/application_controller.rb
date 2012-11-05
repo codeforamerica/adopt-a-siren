@@ -30,8 +30,8 @@ protected
       "hnlsirens.herokuapp.com" => "en",
       "sirens.honolulu.gov" => "en",
       "sirens.local" => "en",
-      "streams.honolulu.gov" => "enstream",
-      "streams.dmt.im" => "enstream"}
+      "streams.honolulu.gov" => "enstreams",
+      "streams.dmt.im" => "enstreams"}
     parsed_locale = domains.include?(request.host) ? domains[request.host] : I18n.default_locale
   end
   
