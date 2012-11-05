@@ -2,8 +2,19 @@ class ThingsController < ApplicationController
   respond_to :json
 
   def show
-    @things = Thing.all( :include => [:users])
+    domains = {"streams.local" => "2",
+      "hnlsirens.herokuapp.com" => "1",
+      "sirens.honolulu.gov" => "1",
+      "sirens.local" => "1",
+      "streams.honolulu.gov" => "2",
+      "streams.dmt.im" => "2"}
 
+    thingtype = domains.include?(request.host) ? domains[request.host] : "1"
+
+    puts thingtype
+    
+    @things = Thing.where(:thing_type => thingtype).includes(:users, :statuses)
+    
     unless @things.blank?
       for t in @things
           if user_signed_in? && t.adopted_by(current_user.id) then
