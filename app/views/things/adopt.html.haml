@@ -3,8 +3,11 @@
 = form_for :thing, :url => things_path, :method => :put, :html => {:id => "adoption_form", :class => "form-stacked"} do |f|
   = f.hidden_field "id"
   = f.hidden_field "user_id", :value => current_user.id
-  %fieldset.control-group
-    = f.label "name", t("labels.name_thing", :thing => t("defaults.thing")), :id => "thing_name_label"
-    = f.text_field "name"
+  - if @thing.thing_type == 1
+    %fieldset.control-group  
+      = f.label "name", t("labels.name_thing", :thing => t("defaults.thing")), :id => "thing_name_label"
+      = f.text_field "name"
+  - else
+    %p.thing_name  #{@thing.name}
   %fieldset.form-actions
     = f.submit t("buttons.adopt"), :class => "btn primary"

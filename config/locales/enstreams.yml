@@ -8,6 +8,7 @@ enstreams:
     shadow: "/assets/markers/shadow.png"
   logos:
     adopta: "/assets/logos/adoptastream.png"
+    favicon: "/favicon_streams.ico"
   buttons:
     abandon: "Abandon this %{thing}"
     adopt: "Adopt!"

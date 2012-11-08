@@ -8,6 +8,7 @@ en:
     shadow: "/assets/markers/shadow.png"
   logos:
     adopta: "/assets/logos/adoptasiren.png"
+    favicon: "/favicon.ico"
   buttons:
     abandon: "Abandon this %{thing}"
     adopt: "Adopt!"
