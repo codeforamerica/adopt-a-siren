@@ -2,7 +2,6 @@ $(function() {
   var center = new google.maps.LatLng(21.477955959755827, -157.96554565429688);
   var mapOptions = {
     center: center,
-    disableDoubleClickZoom: true,
     keyboardShortcuts: false,
     mapTypeControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -16,21 +15,22 @@ $(function() {
     zoom: 11,
     zoomControl: true
   };
+  var showStatus = false;
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
   var size = new google.maps.Size(29.0, 37.0);
   var origin = new google.maps.Point(0, 0);
   var anchor = new google.maps.Point(13.0, 18.0);
-  var greenMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/green.png' %>',
+  var greenMarkerImage = new google.maps.MarkerImage('<%= t 'markers.green' %>',
     size,
     origin,
     anchor
   );
-  var greenStarMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/green_star.png' %>',
+  var greenStarMarkerImage = new google.maps.MarkerImage('<%= t 'markers.green_star' %>',
     size,
     origin,
     anchor
   );
-  var orangeMarkerImage = new google.maps.MarkerImage('<%= image_path 'markers/orange.png' %>',
+  var orangeMarkerImage = new google.maps.MarkerImage('<%= t 'markers.orange' %>',
     size,
     origin,
     anchor
@@ -148,7 +148,14 @@ $(function() {
     });
   }
   var urlActions = function(){
-    console.log(window.location.hash)
+
+    if((window.location.pathname.length > 1) && 
+      (window.location.pathname === "/reports")){
+  
+      showStatus = true;
+    }
+
+
     if(window.location.hash.length > 0){
       //#2:54:failed
       var hash = window.location.hash.substring(1, window.location.hash.length);
@@ -197,7 +204,6 @@ $(function() {
                           statusCode:parts[2]};
 
         $.ajax("/status.json", {type:"POST", data:statusData, success:function(data){
-          console.log("Thanks for reporting");
         }},"json");
       }
 

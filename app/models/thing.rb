@@ -4,6 +4,7 @@ class Thing < ActiveRecord::Base
   validates_presence_of :lat, :lng
   has_and_belongs_to_many :users
   has_many :reminders
+  has_many :statuses
   attr_accessor :owned_by_you
   @owned_by_you
   def self.find_closest(lat, lng, limit=200)

@@ -1,14 +1,14 @@
 # Please maintain alphabetical order
 
-en:
+enstreams:
   markers:
-    green: "/assets/markers/green.png"
-    green_star: "/assets/markers/green_star.png"
-    orange: "/assets/markers/orange.png"
+    green: "/assets/markers/green-stream.png"
+    green_star: "/assets/markers/green_star-stream.png"
+    orange: "/assets/markers/orange-stream.png"
     shadow: "/assets/markers/shadow.png"
   logos:
-    adopta: "/assets/logos/adoptasiren.png"
-    favicon: "/favicon.ico"
+    adopta: "/assets/logos/adoptastream.png"
+    favicon: "/favicon_streams.ico"
   buttons:
     abandon: "Abandon this %{thing}"
     adopt: "Adopt!"
@@ -37,9 +37,9 @@ en:
     neighborhood: "Downtown"
     sms_number: "808-555-1212"
     state: "HI"
-    thing: "siren"
+    thing: "stream"
     this_thing: "This %{thing}"
-    tagline: "You agree to listen for the siren test and report any problems."
+    tagline: "You agree to help clean up and report issues in your stream"
     tos: "By signing up, you agree to the %{tos}."
     voice_number: "808-555-1212"
     zip: "96813"
