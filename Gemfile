@@ -1,17 +1,19 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '~> 3.2'
 
 gem 'arel'
 gem 'devise'
 gem 'geokit'
-gem 'haml', '~> 3.2.0.alpha'
+gem 'haml'
 gem 'http_accept_language'
+gem 'newrelic_rpm'
 gem 'pg'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-gem 'validates_formatting_of'
 gem 'sendgrid', '~> 1.0.1'
-gem 'newrelic_rpm'
+gem 'strong_parameters'
+gem 'validates_formatting_of'
 
 platforms :ruby_18 do
   gem 'fastercsv'
@@ -27,7 +29,8 @@ group :production do
 end
 
 group :test do
-  gem 'simplecov'
+  gem 'coveralls', :require => false
+  gem 'simplecov', :require => false
   gem 'sqlite3'
   gem 'webmock'
 end
