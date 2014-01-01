@@ -261,9 +261,7 @@ fieldset {
   margin-top: 5px;
 }
 
-.map-container {
-  width: auto;
-}
+.map-container {width: auto;padding: 1px;}
 
 #map {
   height: 100%;
